@@ -12,8 +12,11 @@ module.exports = withMT({
         extend: {
             colors: {
                 yellow: "#f39c12",
-                green: "#1a2f33"
+                green: "#1a2f33",
             },
+        },
+        fontFamily: {
+            title: "Belleza",
         },
     },
     plugins: [],

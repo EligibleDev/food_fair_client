@@ -80,7 +80,7 @@ const ProfileMenu = () => {
                                 as="span"
                                 variant="small"
                                 className={isLastItem ? "font-bold" : "font-normal"}
-                                color={isLastItem ? "red" : "var(--text)"}
+                                color={isLastItem ? "red" : "green"}
                             >
                                 {item?.label}
                             </Typography>

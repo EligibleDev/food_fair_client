@@ -1,29 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiLogIn } from "react-icons/fi";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import ProfileMenu from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
 import { Collapse, IconButton } from "@material-tailwind/react";
 import { HiMenu } from "react-icons/hi";
+import NavLinks from "../NavLinks/NavLinks";
 
 const Header = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
-
-    const navLinks = [
-        {
-            name: "Home",
-            path: "/",
-        },
-        {
-            name: "All Foods",
-            path: `/all_foods`,
-        },
-        {
-            name: "Blog",
-            path: "/blog",
-        },
-    ];
 
     return (
         <header
@@ -35,7 +21,7 @@ const Header = () => {
                     <img className="w-24" id="logo" src="/logo.png" alt="" />
                 </Link>
                 <nav className="lg:flex flex-1 gap-2 justify-center items-end hidden">
-                    {navLinks.map((link) => (
+                    {NavLinks.map((link) => (
                         <NavLink
                             className="border-b-[6px] border-white hover:border-[var(--primary)] h-full flex justify-center items-center transition duration-500 text-xs uppercase font-extrabold text-[var(--green)]"
                             key={link?.name}
@@ -48,7 +34,7 @@ const Header = () => {
                 <nav className="lg:hidden flex-1 text-center">
                     <IconButton
                         size="sm"
-                        color="var(--text)"
+                        // color="yellow"
                         variant="text"
                         onClick={toggleIsNavOpen}
                         className=""
@@ -72,7 +58,7 @@ const Header = () => {
                 open={isNavOpen}
                 className="flex flex-col justify-center items-center gap-3 overflow-hidden"
             >
-                {navLinks.map((link) => (
+                {NavLinks.map((link) => (
                     <NavLink
                         className={({ isActive }) =>
                             `transition duration-500 text-xs uppercase font-extrabold ${

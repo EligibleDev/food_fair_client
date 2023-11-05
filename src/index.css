@@ -13,8 +13,17 @@ html {
     font-family: "Belleza", sans-serif;
     font-family: "Josefin Sans", sans-serif;
     color: var(--white);
+    background-image: url("/bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
     scroll-behavior: smooth;
     scrollbar-width: thin;
+}
+
+::selection {
+    background-color: var(--primary);
+    color: var(--white);
 }
 
 ::-webkit-scrollbar {
@@ -23,7 +32,7 @@ html {
 }
 ::-webkit-scrollbar-thumb {
     background: var(--primary);
-    border-radius: 20px;
+    border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #d38911;

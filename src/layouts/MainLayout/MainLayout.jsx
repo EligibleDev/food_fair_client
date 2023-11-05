@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
     return (
-        <div style={{backgroundImage: `url('bg.jpg')`}} className="min-h-screen bg-center bg-fixed">
+        <div className="min-h-screen">
             <Toaster/>
             <Header />
             <Outlet/>
