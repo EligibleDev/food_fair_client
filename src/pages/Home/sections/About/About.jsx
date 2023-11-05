@@ -5,14 +5,14 @@ import Socials from "../../../../components/Socials/Socials";
 
 const About = () => {
     return (
-        <section className="container mx-auto bg-[#fcfcfc] py-16 rounded-xl text-green">
-            <div className="max-w-screen-xl mx-auto border-b-[5px] pb-16 border-dotted border-b-[#6254549c] flex gap-8 justify-between items-center">
+        <section className="container mx-auto bg-[#fcfcfc] py-16 rounded-xl text-green px-8 xl:px-0">
+            <div className="max-w-screen-xl mx-auto border-b-[5px] pb-16 border-dotted border-b-[#6254549c] flex flex-col-reverse lg:flex-row gap-8 justify-between items-center">
                 <div
                     style={{ backgroundImage: `url('/video-bg.jpg')` }}
-                    className="bg-cover bg-center bg-no-repeat w-1/2 h-[560px] rounded"
+                    className="bg-cover bg-center bg-no-repeat w-full lg:w-1/2 h-80 lg:h-[560px] rounded"
                 ></div>
 
-                <div className="flex flex-col gap-7 w-1/2 justify-center items-start">
+                <div className="flex flex-col gap-7 w-full lg:w-1/2 justify-center items-start">
                     <ShortTitle text="About Us" />
 
                     <h1 className="text-5xl font-title">
@@ -28,8 +28,8 @@ const About = () => {
                         ensure that every visit is a culinary journey to savor. Whether
                         you are joining us for a special occasion or a casual meal, we
                         invite you to savor the essence of our cuisine and the warmth of
-                        our hospitality. Welcome to [Restaurant Name], where we celebrate
-                        the art of food and the joy of sharing it with you.
+                        our hospitality. Welcome to Food Fair, where we celebrate the art
+                        of food and the joy of sharing it with you.
                     </p>
 
                     <div className="flex gap-8 items-center">
@@ -52,9 +52,9 @@ const About = () => {
 
             <div
                 style={{ backgroundImage: `url('/working-hour-bg.jpg')` }}
-                className="max-w-screen-xl mx-auto text-[var(--white)] mt-16 rounded  "
+                className="max-w-screen-xl mx-auto lg:mx-auto text-[var(--white)] mt-16  rounded "
             >
-                <div className="w-full h-full bg-[rgba(4,25,29,.5)] rounded flex justify-between items-center p-6 pl-16">
+                <div className="w-full h-full bg-[rgba(4,25,29,.5)] rounded flex gap-6 flex-col lg:flex-row justify-between items-center p-8 lg:p-6 lg:pl-16">
                     <div className="flex flex-col justify-center items-start gap-6">
                         <ShortTitle text="working hours" />
                         <h1 className="text-6xl">Working hours</h1>
@@ -69,7 +69,7 @@ const About = () => {
                         </div>
                     </div>
 
-                    <div className=" flex flex-col gap-5 justify-center text-green items-center bg-white rounded p-14">
+                    <div className="w-full lg:w-fit flex flex-col gap-5 justify-center text-green items-center bg-white rounded p-14">
                         <h5 className="text-xs uppercase font-extrabold tracking-[2px]">
                             SUNDAY TO TUESDAY
                         </h5>
