@@ -57,7 +57,7 @@ const About = () => {
                 <div className="w-full h-full bg-[rgba(4,25,29,.5)] rounded flex gap-6 flex-col lg:flex-row justify-between items-center p-8 lg:p-6 lg:pl-16">
                     <div className="flex flex-col justify-center items-start gap-6">
                         <ShortTitle text="working hours" />
-                        <h1 className="text-6xl">Working hours</h1>
+                        <h1 className="font-title text-6xl">Working hours</h1>
                         <p className="">
                             These are our working hours. You can come in these times only.
                         </p>
