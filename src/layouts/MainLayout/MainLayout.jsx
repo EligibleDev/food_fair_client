@@ -6,10 +6,12 @@ import { Toaster } from "react-hot-toast";
 const MainLayout = () => {
     return (
         <div className="min-h-screen">
-            <Toaster/>
+            <Toaster />
             <Header />
-            <Outlet/>
-            <Footer />
+            <div className="-mt-[70px]">
+                <Outlet />
+                <Footer />
+            </div>
         </div>
     );
 };

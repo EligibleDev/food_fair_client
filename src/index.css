@@ -28,7 +28,7 @@ html {
 
 ::-webkit-scrollbar {
     width: 0.9vw;
-    background: #000;
+    background: var(--green);
 }
 ::-webkit-scrollbar-thumb {
     background: var(--primary);

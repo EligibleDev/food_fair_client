@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <header
             id="header"
-            className="container mx-auto pl-8 pr-2 py-4 lg:py-0 rounded-none sm:rounded-lg sticky top-0 shadow-[0_5px_10px_0_rgba(26,47,51,.2)] sm:top-4 left-0 right-0 bg-white "
+            className="container mx-auto pl-8 pr-2 py-4 lg:py-0 rounded-none sm:rounded-lg sticky z-[999999] top-0 sm:top-4 shadow-[0_5px_10px_0_rgba(26,47,51,.2)]  left-0 right-0 bg-white "
         >
             <nav className="flex justify-between items-center">
                 <Link to="/" className="">
@@ -43,15 +43,11 @@ const Header = () => {
                     </IconButton>
                 </nav>
                 <nav>
-                    <ProfileMenu />
+                    {/* <ProfileMenu /> */}
 
-                    {/* <span className="hidden lg:block">
-                        <PrimaryButton
-                            link="/login-register/login"
-                            icon={FiLogIn}
-                            text="login"
-                        />
-                    </span> */}
+                    <span className="hidden lg:block">
+                        <PrimaryButton link="login" text="login" />
+                    </span>
                 </nav>
             </nav>
             <Collapse
