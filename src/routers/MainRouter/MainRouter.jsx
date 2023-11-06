@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout/MainLayout";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
+import Foods from "../../pages/Foods/Foods";
 
 const MainRouter = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ const MainRouter = createBrowserRouter([
                 index: true,
                 element: <Home />,
             },
+            {
+                path: "/foods",
+                element: <Foods/>
+            }
         ],
     },
     {
