@@ -10,15 +10,15 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import toast from "react-hot-toast";
-// import useAuth from "../../../hooks/useAuth/useAuth";
+import useAuth from "../../hooks/useAuth/useAuth";
 
 const ProfileMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-//     const { user, handleLogout } = useAuth();
+    const { user, logout } = useAuth();
 
     const profileMenuItems = [
         {
-            label: "Baten Ali",
+            label: user?.displayName,
             icon: AiOutlineUser,
             do: () => {
                 setIsMenuOpen(false);
@@ -28,7 +28,7 @@ const ProfileMenu = () => {
             label: "Sign Out",
             icon: FiLogOut,
             do: () => {
-            //     handleLogout();
+                logout();
                 setIsMenuOpen(false);
                 return toast.success("Sign out successful");
             },
@@ -48,8 +48,7 @@ const ProfileMenu = () => {
                         size="sm"
                         alt="tania andrew"
                         className="border border-yellow p-0.5"
-                        // src={user?.photoURL}
-                        src="/fake-profile.jpg"
+                        src={user?.photoURL}
                     />
                     <AiFillCaretDown
                         strokeWidth={2.5}

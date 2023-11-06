@@ -6,15 +6,17 @@ import { Link, NavLink } from "react-router-dom";
 import { Collapse, IconButton } from "@material-tailwind/react";
 import { HiMenu } from "react-icons/hi";
 import NavLinks from "../NavLinks/NavLinks";
+import useAuth from "../../hooks/useAuth/useAuth";
 
 const Header = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const { user } = useAuth();
     const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
     return (
         <header
             id="header"
-            className="container mx-auto pl-8 pr-2 py-4 lg:py-0 rounded-none sm:rounded-lg sticky z-[999999] top-0 sm:top-4 shadow-[0_5px_10px_0_rgba(26,47,51,.2)]  left-0 right-0 bg-white "
+            className="container mx-auto pl-8 pr-2 py-4 lg:py-0 rounded-none sm:rounded-lg sticky z-[999] top-0 sm:top-4 shadow-[0_5px_10px_0_rgba(26,47,51,.2)]  left-0 right-0 bg-white "
         >
             <nav className="flex justify-between items-center">
                 <Link to="/" className="">
@@ -43,11 +45,13 @@ const Header = () => {
                     </IconButton>
                 </nav>
                 <nav>
-                    {/* <ProfileMenu /> */}
-
-                    <span className="hidden lg:block">
-                        <PrimaryButton link="login" text="login" />
-                    </span>
+                    {user ? (
+                        <ProfileMenu />
+                    ) : (
+                        <span className="hidden lg:block">
+                            <PrimaryButton link="login" text="login" />
+                        </span>
+                    )}
                 </nav>
             </nav>
             <Collapse
@@ -67,7 +71,7 @@ const Header = () => {
                         <span className="p-1">{link?.name}</span>
                     </NavLink>
                 ))}
-                <PrimaryButton link="/login" icon={FiLogIn} text="login" />
+                {user ? <PrimaryButton link="/login" icon={FiLogIn} text="login" /> : ""}
             </Collapse>
         </header>
     );

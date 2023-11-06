@@ -62,7 +62,8 @@ const About = () => {
                             These are our working hours. You can come in these times only.
                         </p>
                         <div className="flex items-center gap-6">
-                            <PrimaryButton text="order now" />{" "}
+                            <PrimaryButton text="order now" />
+
                             <Link className="text-white" href="#">
                                 Contact Us
                             </Link>

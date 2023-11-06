@@ -82,67 +82,65 @@ const Testimonial = () => {
     ];
 
     return (
-        <section className="container mx-auto bg-[#fcfcfc] mt-16 py-16 rounded-xl text-green">
-            <div className="max-w-screen-xl mx-auto ">
-                <div className="flex flex-col justify-center items-center pb-10">
-                    <ShortTitle text="Testimonial" />
-                    <h1 className="text-5xl font-title">What they say</h1>
-                </div>
-
-                <Swiper
-                    effect={"coverflow"}
-                    grabCursor
-                    loop
-                    slidesPerView={1}
-                    spaceBetween={10}
-                    coverflowEffect={{
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 1,
-                        slideShadows: true,
-                    }}
-                    modules={[EffectCoverflow]}
-                    className="mySwiper swiper_container "
-                    breakpoints={{
-                        768: {
-                            slidesPerView: 2,
-                            spaceBetween: 20,
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                            spaceBetween: 30,
-                        },
-                    }}
-                >
-                    {testimonials.map((item) => (
-                        <SwiperSlide key={item?.author}>
-                            <div className="flex flex-col gap-4 bg-[#f3f2f0] border-yellow justify-center items-start p-7 border-4">
-                                <h3 className="font-title text-3xl">{item?.title}</h3>
-                                <p>{item?.content}</p>
-                                <div className="w-full border-bottom border-b-[3px] border-dotted border-b-[#6254549c]"></div>
-
-                                <div className="flex justify-between items-center w-full">
-                                    <div className="flex justify-start gap-3 items-center">
-                                        <img
-                                            className="rounded-full w-9"
-                                            src="/fake-profile.jpg"
-                                            alt=""
-                                        />
-                                        <h5 className="text-xs font-extrabold tracking-[2px] uppercase">
-                                            {item?.author}
-                                        </h5>
-                                    </div>
-                                    <span className="text-xs bg-[rgba(26,47,51,.2)] px-[10px] pt-[3px] pb-[1px] rounded-full">
-                                        {item?.date}
-                                    </span>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+        <div className="max-w-screen-xl mx-auto ">
+            <div className="flex flex-col justify-center items-center pb-10">
+                <ShortTitle text="Testimonial" />
+                <h1 className="text-5xl font-title">What they say</h1>
             </div>
-        </section>
+
+            <Swiper
+                effect={"coverflow"}
+                grabCursor
+                loop
+                slidesPerView={1}
+                spaceBetween={10}
+                coverflowEffect={{
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                }}
+                modules={[EffectCoverflow]}
+                className="mySwiper swiper_container "
+                breakpoints={{
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                }}
+            >
+                {testimonials.map((item) => (
+                    <SwiperSlide key={item?.author}>
+                        <div className="flex flex-col gap-4 bg-[#f3f2f0] border-yellow justify-center items-start p-7 border-4">
+                            <h3 className="font-title text-3xl">{item?.title}</h3>
+                            <p>{item?.content}</p>
+                            <div className="w-full border-bottom border-b-[3px] border-dotted border-b-[#6254549c]"></div>
+
+                            <div className="flex justify-between items-center w-full">
+                                <div className="flex justify-start gap-3 items-center">
+                                    <img
+                                        className="rounded-full w-9"
+                                        src="/fake-profile.jpg"
+                                        alt=""
+                                    />
+                                    <h5 className="text-xs font-extrabold tracking-[2px] uppercase">
+                                        {item?.author}
+                                    </h5>
+                                </div>
+                                <span className="text-xs bg-[rgba(26,47,51,.2)] px-[10px] pt-[3px] pb-[1px] rounded-full">
+                                    {item?.date}
+                                </span>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
     );
 };
 

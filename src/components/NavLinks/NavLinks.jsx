@@ -4,8 +4,8 @@ const NavLinks = [
         path: "/",
     },
     {
-        name: "All Foods",
-        path: `/all_foods`,
+        name: "Foods",
+        path: `/foods`,
     },
     {
         name: "Blog",
