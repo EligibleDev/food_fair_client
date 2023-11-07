@@ -10,7 +10,9 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const axios = useAxios();
-    const { login } = useAuth();
+    const { user, login, logout } = useAuth();
+
+    console.log(user)
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -25,26 +27,16 @@ const Login = () => {
             const data = await axios.post("/auth/access_token", {
                 email: user.user.email,
             });
-            console.log(data);
-
-            toast.success("Login successful", { id: toastId });
-            navigate(location?.state ? location.state : "/");
+            if (data.data.success) {
+                toast.success("Login successful", { id: toastId });
+                navigate(location?.state ? location.state : "/");
+            } else {
+                logout();
+            }
         } catch (error) {
             console.error(error);
             toast.error(error.message, { id: toastId });
         }
-
-        // login(email, password)
-        //     .then((res) => {
-        //         console.log(res.user.email);
-        //         axios.post("/auth/access_token", { email: res.user.email });
-        //         toast.success("Login successful", { id: toastId });
-        //         navigate(location?.state ? location.state : "/");
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //         toast.error(error.message, { id: toastId });
-        //     });
     };
 
     return (

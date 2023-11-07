@@ -38,7 +38,7 @@ FoodCard.propTypes = {
     category: PropTypes.string,
     shortDescription: PropTypes.string,
     name: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
     quantity: PropTypes.number,
 };
 export default FoodCard;

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios/useAxios";
 import ShortTitle from "../../components/ShortTitle/ShortTitle";
 import FoodCard from "../../components/FoodCard/FoodCard";
+import { Spinner } from "@material-tailwind/react";
 
 const Foods = () => {
     const axios = useAxios();
@@ -17,7 +18,7 @@ const Foods = () => {
         error,
     } = useQuery({ queryKey: ["food"], queryFn: getFoods });
 
-    console.table(foods.data)
+    console.table(foods?.data?.foods)
 
     return (
         <>
@@ -32,25 +33,31 @@ const Foods = () => {
             </div>
 
             <section className="container mx-auto bg-[#fcfcfc] py-16 rounded-xl text-green px-8 xl:px-0">
-                <div className="max-w-screen-xl mx-auto px-8 xl:px-0">
-                    <div className="flex justify-between items-center">
+                <div className="max-w-screen-xl mx-auto">
+                    <div className="flex justify-between items-center border-b-[5px] pb-10 mb-12 border-dotted border-b-[#6254549c]">
                         <h1 className="text-5xl font-title">Search/ Filter</h1>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16">
-                        {foods?.data?.map((food) => (
-                            <FoodCard
-                                key={food?._id}
-                                id={food?._id}
-                                image={food?.image}
-                                category={food?.foodCategory}
-                                name={food?.foodName}
-                                shortDescription={food?.shortDescription}
-                                price={food?.price}
-                                quantity={food?.quantity}
-                            />
-                        ))}
-                    </div>
+                    {isLoading ? (
+                        <Spinner color="amber" className="h-16 w-16" />
+                    ) : isError ? (
+                        <p>Something went wrong.{error}</p>
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16">
+                            {foods?.data?.foods?.map((food) => (
+                                <FoodCard
+                                    key={food?._id}
+                                    id={food?._id}
+                                    image={food?.image}
+                                    category={food?.foodCategory}
+                                    name={food?.foodName}
+                                    shortDescription={food?.shortDescription}
+                                    price={food?.price}
+                                    quantity={food?.quantity}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
         </>

@@ -5,14 +5,16 @@ import SocialAuth from "../../components/SocialAuth/SocialAuth";
 import useAuth from "../../hooks/useAuth/useAuth";
 import toast from "react-hot-toast";
 import useUtils from "../../hooks/useUtils/useUtils";
+import useAxios from "../../hooks/useAxios/useAxios";
 
 const Register = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { createUser, updateUser } = useAuth();
     const { serverURL } = useUtils();
+    const axios = useAxios();
 
-    const handleRegister = (event) => {
+    const handleRegister = async (event) => {
         event.preventDefault();
 
         const name = event.target.name.value;
@@ -32,43 +34,20 @@ const Register = () => {
 
         const toastId = toast.loading("Creating user...");
 
-        createUser(email, password)
-            .then((res) => {
-                const user = res.user;
-                fetch("https://assignment-10-server-ivory-one.vercel.app/users", {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(user),
-                })
-                    .then((res) => res.json())
-                    .then((data) => {
-                        if (data.acknowledged) {
-                            console.log(data);
-                            updateUser(name, photo);
-                            toast.success("Account created successfully");
-                            navigate(location?.state ? location.state : "/");
-                        }
-                    })
-                    .catch((error) => console.error(error));
-            })
-            .catch((error) => {
-                console.error(error);
-                toast.error(error.message);
-            });
+        try {
+            const user = await createUser(email, password);
+            const data = await axios.post("/users", user.user);
+            console.log(data);
+            console.log(user.user);
 
-        createUser(email, password)
-            .then((res) => {
-                updateUser(name, photo);
-                toast.success("Account created successfully", { id: toastId });
-                navigate(location?.state ? location.state : "/");
-                console.log(location);
-            })
-            .catch((error) => {
-                console.log(error);
-                toast.error(error.message, { id: toastId });
-            });
+            updateUser(name, photo);
+            toast.success("Account created successfully", { id: toastId });
+
+            navigate(location?.state ? location.state : "/");
+        } catch (error) {
+            console.error(error);
+            toast.error(error.message, { id: toastId });
+        }
     };
 
     return (
