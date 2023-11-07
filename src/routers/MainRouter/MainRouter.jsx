@@ -5,6 +5,7 @@ import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import Foods from "../../pages/Foods/Foods";
 import FoodDetails from "../../pages/FoodDetails/FoodDetails";
+import Blog from "../../pages/Blog/Blog";
 
 const MainRouter = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const MainRouter = createBrowserRouter([
                 path: "/food/:id",
                 element: <FoodDetails />,
             },
+            {
+                path: "/blog",
+                element: <Blog/>
+            }
         ],
     },
     {

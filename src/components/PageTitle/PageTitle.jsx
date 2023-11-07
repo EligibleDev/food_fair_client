@@ -9,7 +9,7 @@ const PageTitle = ({ shortTitle, title }) => {
         >
             <div className="w-full h-96 flex flex-col justify-center items-center bg-[rgba(4,25,29,.5)]">
                 <ShortTitle text={shortTitle} />
-                <h1 className="text-5xl font-title pb-10">{title}</h1>
+                <h1 className="text-5xl text-center font-title pb-10">{title}</h1>
             </div>
         </div>
     );
