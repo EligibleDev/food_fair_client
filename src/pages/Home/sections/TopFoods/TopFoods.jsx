@@ -35,7 +35,7 @@ const TopFoods = () => {
                     <h3 className="font-title text-3xl">{name}</h3>
 
                     <div className="flex justify-between items-center pt-5 border-t-[3px] border-dotted border-t-[#6254549c]">
-                        <PrimaryButton link={`/foods/${id}`} text="Details" />
+                        <PrimaryButton link={`/food/${id}`} text="Details" />
 
                         <h3 className="text-3xl">${price}</h3>
                     </div>

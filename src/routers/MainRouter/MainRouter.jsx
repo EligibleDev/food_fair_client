@@ -4,6 +4,7 @@ import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import Foods from "../../pages/Foods/Foods";
+import FoodDetails from "../../pages/FoodDetails/FoodDetails";
 
 const MainRouter = createBrowserRouter([
     {
@@ -16,8 +17,12 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: "/foods",
-                element: <Foods/>
-            }
+                element: <Foods />,
+            },
+            {
+                path: "/food/:id",
+                element: <FoodDetails />,
+            },
         ],
     },
     {

@@ -4,20 +4,28 @@ import NavLinks from "../NavLinks/NavLinks";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 import useAxios from "../../hooks/useAxios/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Spinner } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
     const axios = useAxios();
+    const [foods, setFoods] = useState([]);
 
     const getFoods = async () => {
         return await axios.get("/mostSoldFoods");
     };
 
     const {
-        data: foods,
+        data: loadedFoods,
         isLoading,
         isError,
         error,
     } = useQuery({ queryKey: ["food"], queryFn: getFoods });
+
+    useEffect(() => {
+        setFoods(loadedFoods?.data);
+    }, [loadedFoods]);
+    console.log(foods);
 
     return (
         <footer className="max-w-screen-xl mx-auto px-8 xl:px-0">
@@ -72,18 +80,23 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col gap-6">
                     <h3 className="font-title text-3xl">Featured foods</h3>
-
-                    <div className="flex justify-between items-center gap-">
-                        {foods?.data?.slice(0, 3).map((food) => (
-                            <Link key={food?._id} to={`/foods/${food?._id}`}>
-                                <img
-                                    className="w-24 sm:w-40 lg:w-24 h-24 object-cover rounded "
-                                    src={food?.image}
-                                    alt=""
-                                />
-                            </Link>
-                        ))}
-                    </div>
+                    {isLoading ? (
+                        <Spinner color="amber" className="h-16 w-16" />
+                    ) : isError ? (
+                        <p>Something went wrong.{error}</p>
+                    ) : (
+                        <div className="flex justify-between items-center">
+                            {foods?.slice(0, 3).map((food) => (
+                                <Link key={food?._id} to={`/food/${food?._id}`}>
+                                    <img
+                                        className="w-24 sm:w-40 lg:w-24 h-24 object-cover rounded "
+                                        src={food?.image}
+                                        alt=""
+                                    />
+                                </Link>
+                            ))}
+                        </div>
+                    )}
 
                     <Link to="/foods" className="text-yellow">
                         See All Foods

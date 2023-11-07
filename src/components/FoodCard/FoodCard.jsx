@@ -23,7 +23,7 @@ const FoodCard = ({ id, image, category, name, shortDescription, price, quantity
                 <p className="">{shortDescription.slice(0, 125)}... ...</p>
 
                 <div className="flex justify-between items-center pt-5 border-t-[3px] border-dotted border-t-[#6254549c]">
-                    <PrimaryButton link={`/foods/${id}`} text="Details" />
+                    <PrimaryButton link={`/food/${id}`} text="Details" />
 
                     <h3 className="text-3xl">${price}</h3>
                 </div>
