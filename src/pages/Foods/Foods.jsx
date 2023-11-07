@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios/useAxios";
 import ShortTitle from "../../components/ShortTitle/ShortTitle";
 import FoodCard from "../../components/FoodCard/FoodCard";
-import { Spinner } from "@material-tailwind/react";
+import { Button, IconButton, Spinner, step } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useCountries } from "use-react-countries";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const Foods = () => {
     const [categories, setCategories] = useState([]);
@@ -13,8 +14,7 @@ const Foods = () => {
     const [page, setPage] = useState(1);
     const { countries } = useCountries();
     const axios = useAxios();
-
-    console.log(country, category);
+    const limit = 9;
 
     //getting categories
     const fetchCategories = async () => {
@@ -29,8 +29,24 @@ const Foods = () => {
         fetchCategories();
     }, []);
 
+    const getItemProps = (index) => ({
+        variant: page === index ? "filled" : "text",
+        className: page === index ? "bg-yellow" : "bg-[#fcfcfc]",
+        onClick: () => setPage(index),
+    });
+
+    const next = () => {
+        if (page === 5) return;
+        setPage(page + 1);
+    };
+
+    const prev = () => {
+        if (page === 1) return;
+        setPage(page - 1);
+    };
+
     const getFoods = async () => {
-        return await axios.get(`/foods?category=${category}&country=${country}`);
+        return await axios.get(`/foods?category=${category}&country=${country}&page=${page}&limit=${limit}`);
     };
 
     const {
@@ -38,7 +54,10 @@ const Foods = () => {
         isLoading,
         isError,
         error,
-    } = useQuery({ queryKey: ["food", category, country], queryFn: getFoods });
+    } = useQuery({ queryKey: ["food", category, country, page, limit], queryFn: getFoods });
+    console.log(foods)
+
+    const totalPages = Math.ceil(foods?.data?.total / limit);
 
     return (
         <>
@@ -73,7 +92,7 @@ const Foods = () => {
                             onChange={(e) => setCountry(e.target.value)}
                             className="h-full w-full rounded-[7px] border border-yellow bg-transparent px-3 py-2.5 text-sm font-normal outline outline-0 transition-all focus:border-2 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                         >
-                            <option value={""}>Select Country</option>
+                            <option value={""}>Select Origin</option>
                             {countries.map(({ name }) => (
                                 <option key={name} value={name}>
                                     {name}
@@ -106,6 +125,46 @@ const Foods = () => {
                             No data found on this filter, Try something else
                         </h3>
                     )}
+                </div>
+
+                <div className="flex justify-center pt-16 items-center gap-4">
+                    <Button
+                        variant="text"
+                        className="flex items-center gap-2 rounded-full text-green"
+                        color="amber"
+                        onClick={prev}
+                        disabled={page === 1}
+                    >
+                        <FaArrowLeft strokeWidth={2} className="h-4 w-4" /> Previous
+                    </Button>
+                    <div className="flex items-center gap-2">
+                        {isLoading
+                            ? ""
+                            : Array(totalPages)
+                                  .fill(0)
+                                  .map((item, index) => {
+                                      const pageNumber = index + 1;
+                                      return (
+                                          <IconButton
+                                              key={pageNumber}
+                                              className=""
+                                              {...getItemProps(pageNumber)}
+                                          >
+                                              {pageNumber}
+                                          </IconButton>
+                                      );
+                                  })}
+                    </div>
+                    <Button
+                        variant="text"
+                        className="flex items-center gap-2 rounded-full text-green"
+                        color="amber"
+                        onClick={next}
+                        disabled={page === 5}
+                    >
+                        Next
+                        <FaArrowRight strokeWidth={2} className="h-4 w-4" />
+                    </Button>
                 </div>
             </section>
         </>
