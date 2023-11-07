@@ -21,7 +21,7 @@ const Slide = ({ title, serial }) => (
                         buds to culinary paradise at our restaurant
                     </p>
 
-                    <PrimaryButton text="All Products" />
+                    <PrimaryButton link="/foods" text="All Products" />
                 </div>
             </div>
         </div>

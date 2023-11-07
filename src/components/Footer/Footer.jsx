@@ -2,8 +2,23 @@ import { Link, NavLink } from "react-router-dom";
 import Socials from "../Socials/Socials";
 import NavLinks from "../NavLinks/NavLinks";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
+import useAxios from "../../hooks/useAxios/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const Footer = () => {
+    const axios = useAxios();
+
+    const getFoods = async () => {
+        return await axios.get("/mostSoldFoods");
+    };
+
+    const {
+        data: foods,
+        isLoading,
+        isError,
+        error,
+    } = useQuery({ queryKey: ["food"], queryFn: getFoods });
+
     return (
         <footer className="max-w-screen-xl mx-auto px-8 xl:px-0">
             <div className="flex py-14 justify-between items-center border-b-[5px] border-dotted border-b-[#6254549c]">
@@ -58,25 +73,19 @@ const Footer = () => {
                 <div className="flex flex-col gap-6">
                     <h3 className="font-title text-3xl">Featured foods</h3>
 
-                    <div className="flex justify-between items-center gap-1">
-                        <img
-                            className="w-24 sm:w-40 lg:w-24 rounded "
-                            src="/fake-profile.jpg"
-                            alt=""
-                        />
-                        <img
-                            className="w-24 sm:w-40 lg:w-24 rounded "
-                            src="/fake-profile.jpg"
-                            alt=""
-                        />
-                        <img
-                            className="w-24 sm:w-40 lg:w-24 rounded "
-                            src="/fake-profile.jpg"
-                            alt=""
-                        />
+                    <div className="flex justify-between items-center gap-">
+                        {foods?.data?.slice(0, 3).map((food) => (
+                            <Link key={food?._id} to={`/foods/${food?._id}`}>
+                                <img
+                                    className="w-24 sm:w-40 lg:w-24 h-24 object-cover rounded "
+                                    src={food?.image}
+                                    alt=""
+                                />
+                            </Link>
+                        ))}
                     </div>
 
-                    <Link className="text-yellow" href="#">
+                    <Link to="/foods" className="text-yellow">
                         See All Foods
                     </Link>
                 </div>

@@ -69,7 +69,7 @@ const TopFoods = () => {
             )}
 
             <div className="text-center pt-14">
-                <PrimaryButton text="See all foods" />
+                <PrimaryButton link="/foods" text="See all foods" />
             </div>
         </div>
     );

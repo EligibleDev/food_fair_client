@@ -33,7 +33,7 @@ const About = () => {
                     </p>
 
                     <div className="flex gap-8 items-center">
-                        <PrimaryButton text="order now" />
+                        <PrimaryButton link="/foods" text="order now" />
                         <div className="flex gap-2">
                             {Socials.map((item, index) => {
                                 const IconComponent = item.icon;
@@ -62,9 +62,9 @@ const About = () => {
                             These are our working hours. You can come in these times only.
                         </p>
                         <div className="flex items-center gap-6">
-                            <PrimaryButton text="order now" />
+                            <PrimaryButton link="/foods" text="see all foods" />
 
-                            <Link className="text-white" href="#">
+                            <Link className="text-white transition hover:text-yellow" href="#">
                                 Contact Us
                             </Link>
                         </div>
