@@ -55,7 +55,7 @@ const TopFoods = () => {
                 <p>Something went wrong.{error}</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16">
-                    {foods?.data?.foods?.map((food) => (
+                    {foods?.data?.map((food) => (
                         <FoodBlock
                             key={food?._id}
                             id={food?._id}
