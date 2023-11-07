@@ -25,7 +25,6 @@ const Footer = () => {
     useEffect(() => {
         setFoods(loadedFoods?.data);
     }, [loadedFoods]);
-    console.log(foods);
 
     return (
         <footer className="max-w-screen-xl mx-auto px-8 xl:px-0">

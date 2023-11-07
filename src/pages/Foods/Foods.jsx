@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios/useAxios";
-import ShortTitle from "../../components/ShortTitle/ShortTitle";
 import FoodCard from "../../components/FoodCard/FoodCard";
-import { Button, IconButton, Input, Spinner } from "@material-tailwind/react";
+import { Button, IconButton, Spinner } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useCountries } from "use-react-countries";
 import { FaArrowLeft, FaArrowRight, FaMagnifyingGlass } from "react-icons/fa6";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 const Foods = () => {
     const [categories, setCategories] = useState([]);
@@ -73,15 +73,7 @@ const Foods = () => {
 
     return (
         <>
-            <div
-                className="bg-center bg-cover "
-                style={{ backgroundImage: `url('/page-header-bg.jpg')` }}
-            >
-                <div className="w-full h-96 flex flex-col justify-center items-center bg-[rgba(4,25,29,.5)]">
-                    <ShortTitle text="Shop" />
-                    <h1 className="text-5xl font-title pb-10">Find what you need</h1>
-                </div>
-            </div>
+            <PageTitle shortTitle="Shop" title="Find what you need" />
 
             <section className="container mx-auto -mt-12 shadow-xl bg-[#fcfcfc] py-16 rounded-xl text-green px-8 xl:px-0">
                 <div className="max-w-screen-xl mx-auto ">
