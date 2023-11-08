@@ -3,6 +3,7 @@ import useAuth from "../useAuth/useAuth";
 
 const instance = axios.create({
     baseURL: "http://localhost:5000/api/v1",
+    //https://assignment-11-server-ten-lyart.vercel.app/api/v1
     withCredentials: true,
     timeout: 1000,
     headers: { "X-Custom-Header": "foobar" },
@@ -19,7 +20,6 @@ const useAxios = () => {
         },
         function (error) {
             if (error?.response?.status === 401 || error?.response?.status === 403) {
-                // Check if we're not already in the process of logging out
                 if (!isLoggingOut) {
                     isLoggingOut = true;
                     logout();

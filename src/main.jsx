@@ -7,8 +7,9 @@ import AuthProvider from "./providers/AuthProvuder/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import UtilsProvider from "./providers/UtilsProvider/UtilsProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -16,7 +17,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <QueryClientProvider client={queryClient}>
             <AuthProvider>
                 <UtilsProvider>
-                    <RouterProvider router={MainRouter} />
+                    <span id="top" />
+                    <HelmetProvider>
+                        <RouterProvider router={MainRouter} />
+                    </HelmetProvider>
                 </UtilsProvider>
             </AuthProvider>
         </QueryClientProvider>

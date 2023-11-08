@@ -50,7 +50,8 @@ const TopFoods = () => {
             <h1 className="text-5xl font-title pb-10">Top selling foods</h1>
 
             {isLoading ? (
-<LoadingSpinner/>            ) : isError ? (
+                <LoadingSpinner />
+            ) : isError ? (
                 <p>something went wrong.{error.message}</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16">

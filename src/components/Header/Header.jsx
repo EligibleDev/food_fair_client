@@ -14,10 +14,7 @@ const Header = () => {
     const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
     return (
-        <header
-            id="header"
-            className="container mx-auto pl-8 pr-2 py-4 lg:py-0 rounded-none sm:rounded-lg sticky z-[999] top-0 sm:top-4 shadow-[0_5px_10px_0_rgba(26,47,51,.2)]  left-0 right-0 bg-white "
-        >
+        <header className="container mx-auto pl-8 pr-2 py-4 lg:py-0 rounded-none sm:rounded-lg sticky z-[999] top-0 sm:top-4 shadow-[0_5px_10px_0_rgba(26,47,51,.2)]  left-0 right-0 bg-white ">
             <nav className="flex justify-between items-center">
                 <Link to="/" className="">
                     <img className="w-24" id="logo" src="/logo.png" alt="" />

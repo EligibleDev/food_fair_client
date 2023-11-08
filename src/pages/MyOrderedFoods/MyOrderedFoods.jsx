@@ -6,6 +6,7 @@ import { FaTrash } from "react-icons/fa6";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const MyOrderedFoods = () => {
     const axios = useAxios();
@@ -39,7 +40,9 @@ const MyOrderedFoods = () => {
         },
     });
 
-    return (
+    return (<>  <Helmet>
+        <title>My Orders | Food Fair</title>
+    </Helmet>
         <div className="p-5 flex justify-center items-start">
             {isLoading ? (
                 <LoadingSpinner />
@@ -79,7 +82,7 @@ const MyOrderedFoods = () => {
                                     <td className="p-4">
                                         {food?.buyingDate?.toLocaleString().split("T")[0]}
                                     </td>
-                                    <td className="p-4">{food?.authorName}</td>
+                                    <td className="p-4">{food?.authorInfo?.displayName}</td>
 
                                     <td className="p-4">
                                         <IconButton
@@ -96,7 +99,7 @@ const MyOrderedFoods = () => {
                     </tbody>
                 </table>
             )}
-        </div>
+        </div></>
     );
 };
 

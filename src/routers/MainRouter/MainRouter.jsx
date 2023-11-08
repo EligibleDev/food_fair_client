@@ -12,6 +12,7 @@ import MyOrderedFoods from "../../pages/MyOrderedFoods/MyOrderedFoods";
 import AddFood from "../../pages/AddFood/AddFood";
 import PrivateRoute from "../../components/PrivateRoute/PrivateRoute";
 import PurchaseFood from "../../pages/PurchaseFood/PurchaseFood";
+import UpdateFood from "../../pages/UpdateFood/UpdateFood";
 
 const MainRouter = createBrowserRouter([
     {
@@ -28,7 +29,11 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: "/food/:id",
-                element: <FoodDetails />,
+                element: (
+                    <PrivateRoute>
+                        <FoodDetails />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/purchase_food/:id",
@@ -50,7 +55,11 @@ const MainRouter = createBrowserRouter([
     },
     {
         path: "/profile",
-        element: <Profile />,
+        element: (
+            <PrivateRoute>
+                <Profile />
+            </PrivateRoute>
+        ),
         children: [
             {
                 index: true,
@@ -62,7 +71,11 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: "/profile/my_ordered_foods",
-                element: <MyOrderedFoods />,
+                element: (
+                    <PrivateRoute>
+                        <MyOrderedFoods />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/profile/add_food",
@@ -71,6 +84,15 @@ const MainRouter = createBrowserRouter([
                         <AddFood />
                     </PrivateRoute>
                 ),
+            },
+            {
+                path: "/profile/update_food/:id",
+                element: <UpdateFood />,
+                loader: ({ params }) =>
+                    fetch(`http://localhost:5000/api/v1/food/${params?.id}`),
+                //😥😣😣😓😓
+                //I am extremity sorry vaiya/ apu onek bar erorr khauar poreu jokhon previous value gula input e set
+                //korte parsilam na tokhon ager assignment e evabe koresi tai oita moto kore kore dilam.
             },
         ],
     },

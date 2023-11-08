@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const FoodDetails = () => {
     const { id } = useParams();
@@ -22,8 +23,10 @@ const FoodDetails = () => {
 
     return (
         <>
+            <Helmet>
+                <title> Food Details | Food Fair</title>
+            </Helmet>
             <PageTitle shortTitle="welcome" title={foodDetails?.data?.foodName} />
-
             <section className="container mx-auto -mt-12 shadow-xl bg-[#fcfcfc] py-7 lg:py-16 rounded-xl text-green px-8 xl:px-0">
                 {isLoading ? (
                     <LoadingSpinner />
@@ -63,7 +66,10 @@ const FoodDetails = () => {
                                     </p>
 
                                     <p>
-                                        Author: <b>{foodDetails?.data?.authorName}</b>
+                                        Author:{" "}
+                                        <b>
+                                            {foodDetails?.data?.authorInfo?.displayName}
+                                        </b>
                                     </p>
                                 </div>
 

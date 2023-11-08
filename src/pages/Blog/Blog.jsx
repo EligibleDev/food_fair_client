@@ -1,8 +1,11 @@
+import { Helmet } from "react-helmet-async";
 import PageTitle from "../../components/PageTitle/PageTitle";
 
 const Blog = () => {
     return (
-        <>
+        <>  <Helmet>
+        <title>Blog | Food Fair</title>
+    </Helmet>
             <PageTitle shortTitle="blog" title="Answers of assignment questions" />
             <section className="container mx-auto -mt-12 shadow-xl bg-[#fcfcfc] py-7 lg:py-16 rounded-xl text-green px-8 xl:px-0">
                 <div className="max-w-screen-xl mx-auto ">

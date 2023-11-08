@@ -1,13 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+const all = import.meta.env;
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBMZYUOrPe3-99r-TCsvyQOWnOiCn_uswE",
-    authDomain: "assignment-11-food-fair.firebaseapp.com",
-    projectId: "assignment-11-food-fair",
-    storageBucket: "assignment-11-food-fair.appspot.com",
-    messagingSenderId: "713200036388",
-    appId: "1:713200036388:web:f2f174278461dacb4186b1",
+    apiKey: all.VITE_apiKey,
+    authDomain: all.VITE_authDomain,
+    projectId: all.VITE_projectId,
+    storageBucket: all.VITE_storageBucket,
+    messagingSenderId: all.VITE_messagingSenderId,
+    appId: all.VITE_appId,
 };
 
 const app = initializeApp(firebaseConfig);

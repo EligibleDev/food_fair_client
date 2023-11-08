@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const UtilsContext = createContext();
 const UtilsProvider = ({ children }) => {
-    const serverURL = "my server url";
+    const serverURL = "http://localhost:5000/";
     const values = { serverURL };
 
     return <UtilsContext.Provider value={values}>{children}</UtilsContext.Provider>;

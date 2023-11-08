@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth/useAuth";
 import SocialAuth from "../../components/SocialAuth/SocialAuth";
 import toast from "react-hot-toast";
 import useAxios from "../../hooks/useAxios/useAxios";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Login = () => {
     const axios = useAxios();
     const { user, login, logout } = useAuth();
 
-    console.log(user)
+    console.log(user);
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -32,6 +33,9 @@ const Login = () => {
                 navigate(location?.state ? location.state : "/");
             } else {
                 logout();
+                axios.post("/auth/logout").then((res) => {
+                    console.log(res.data);
+                });
             }
         } catch (error) {
             console.error(error);
@@ -40,61 +44,66 @@ const Login = () => {
     };
 
     return (
-        <div className="w-full h-screen flex justify-center items-center ">
-            <div className="w-full max-w-sm p-4 bg-[rgba(4,25,29,.5)] border-2 border-yellow rounded-lg sm:p-6 md:p-8 text-[var(--white)]">
-                <form onSubmit={handleLogin} className="space-y-6">
-                    <h5 className="font-title text-4xl">Login</h5>
-                    <Input
-                        type="email"
-                        required
-                        color="white"
-                        variant="standard"
-                        label="Your Email"
-                        name="email"
-                    />
+        <>
+            <Helmet>
+                <title>Login | Food Fair</title>
+            </Helmet>
+            <div className="w-full h-screen flex justify-center items-center ">
+                <div className="w-full max-w-sm p-4 bg-[rgba(4,25,29,.5)] border-2 border-yellow rounded-lg sm:p-6 md:p-8 text-[var(--white)]">
+                    <form onSubmit={handleLogin} className="space-y-6">
+                        <h5 className="font-title text-4xl">Login</h5>
+                        <Input
+                            type="email"
+                            required
+                            color="white"
+                            variant="standard"
+                            label="Your Email"
+                            name="email"
+                        />
 
-                    <Input
-                        type="password"
-                        required
-                        color="white"
-                        variant="standard"
-                        label="Your Password"
-                        name="password"
-                    />
-                    <Checkbox
-                        label={
-                            <Typography
-                                variant="small"
-                                color="yellow"
-                                className="flex items-center font-normal text-[var(--white)]"
-                            >
-                                I agree the
-                                <a
-                                    href="#"
-                                    className="font-medium transition-colors hover:text-yellow"
+                        <Input
+                            type="password"
+                            required
+                            color="white"
+                            variant="standard"
+                            label="Your Password"
+                            name="password"
+                        />
+                        <Checkbox
+                            label={
+                                <Typography
+                                    variant="small"
+                                    color="yellow"
+                                    className="flex items-center font-normal text-[var(--white)]"
                                 >
-                                    &nbsp;Terms and Conditions
-                                </a>
-                            </Typography>
-                        }
-                        containerProps={{ className: "-ml-2.5" }}
-                        required
-                    />
+                                    I agree the
+                                    <a
+                                        href="#"
+                                        className="font-medium transition-colors hover:text-yellow"
+                                    >
+                                        &nbsp;Terms and Conditions
+                                    </a>
+                                </Typography>
+                            }
+                            containerProps={{ className: "-ml-2.5" }}
+                            required
+                        />
 
-                    <PrimaryButton type="submit" text="login" />
-                    <div className="text-sm font-medium ">
-                        Not registered?{" "}
-                        <Link to="/register" className="text-yellow">
-                            Create account
-                        </Link>
+                        <PrimaryButton type="submit" text="login" />
+                        <div className="text-sm font-medium ">
+                            Not registered?{" "}
+                            <Link to="/register" className="text-yellow">
+                                Create account
+                            </Link>
+                        </div>
+                    </form>
+
+                    <div className="mt-6 pt-7 border-t-[4px] border-dotted border-t-[#6254549c]">
+                        <SocialAuth />
                     </div>
-                </form>
-
-                <div className="mt-6 pt-7 border-t-[4px] border-dotted border-t-[#6254549c]">
-                    <SocialAuth />
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

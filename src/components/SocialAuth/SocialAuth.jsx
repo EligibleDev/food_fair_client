@@ -6,20 +6,34 @@ import { useMutation } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios/useAxios";
 
 const SocialAuth = () => {
-    const { googleLogin } = useAuth();
+    const { googleLogin, logout } = useAuth();
     const navigate = useNavigate();
     const axios = useAxios();
 
     const handleSocialLogin = (media) => {
         media()
-            .then((res) => {
+            .then(async (res) => {
                 mutate(res?.user);
                 console.log(res);
-                toast.success("Google login successful");
-                navigate("/");
+                try {
+                    const response = await axios.post("/auth/access_token", {
+                        email: res?.user?.email,
+                    });
+                    if (response.data?.success) {
+                        toast.success("Google Login Successful");
+                        navigate("/");
+                    } else {
+                        logout();
+                        const logoutResponse = await axios.post("/auth/logout");
+                        console.log(logoutResponse.data);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
             })
             .catch((error) => console.error(error));
     };
+
     const { mutate } = useMutation({
         mutationKey: ["user"],
         mutationFn: (user) => {

@@ -8,6 +8,7 @@ import { Tooltip } from "@material-tailwind/react";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const PurchaseFood = () => {
     const { id } = useParams();
@@ -71,12 +72,14 @@ const PurchaseFood = () => {
         }
     };
 
-    console.log(currentDate)
+    console.log(currentDate);
 
     return (
         <>
+            <Helmet>
+                <title>Purchase Food | Food Fair</title>
+            </Helmet>
             <PageTitle shortTitle="purchase" title={foodDetails?.data?.foodName} />
-
             <section className="container mx-auto -mt-12 shadow-xl bg-[#fcfcfc] py-7 lg:py-16 rounded-xl text-green px-8 xl:px-0">
                 {isLoading ? (
                     <LoadingSpinner />
@@ -97,7 +100,11 @@ const PurchaseFood = () => {
 
                             <h2 className="text-4xl">${foodDetails?.data?.price}</h2>
 
-                            {foodDetails?.data?.quantity > 0 ? (
+                            {foodDetails?.data?.quantity <= 0 ? (
+                                <p className="text-2xl font-title text-red-500">
+                                    This product is currently out of stock
+                                </p>
+                            ) : foodDetails?.data?.authorInfo?.email === user?.email ? (
                                 <>
                                     <p className="text-2xl font-title">
                                         <b>{foodDetails?.data?.quantity}</b> in stock
@@ -142,7 +149,7 @@ const PurchaseFood = () => {
                                 </>
                             ) : (
                                 <p className="text-2xl font-title text-red-500">
-                                    This product is currently out of stock
+                                    You cant buy your own product
                                 </p>
                             )}
                         </div>

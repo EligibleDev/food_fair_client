@@ -5,6 +5,7 @@ import Slide from "./Slide";
 const Slider = () => {
     return (
         <Carousel
+           
             className="h-screen"
             loop
             navigation={({ setActiveIndex, activeIndex, length }) => (

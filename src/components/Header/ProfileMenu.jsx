@@ -12,15 +12,17 @@ import {
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth/useAuth";
 import { useNavigate } from "react-router-dom";
+import useAxios from "../../hooks/useAxios/useAxios";
 
 const ProfileMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const axios = useAxios();
 
     const profileMenuItems = [
         {
-            label: "Profile",
+            label: "Dashboard",
             icon: AiOutlineUser,
             do: () => {
                 navigate("/profile/");
@@ -32,6 +34,9 @@ const ProfileMenu = () => {
             icon: FiLogOut,
             do: () => {
                 logout();
+                axios.post("/auth/logout").then((res) => {
+                    console.log(res.data);
+                });
                 setIsMenuOpen(false);
                 return toast.success("Sign out successful");
             },

@@ -3,9 +3,9 @@ import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 
 const Profile = () => {
     return (
-        <>
+        <>  
             <div className="h-screen p-4 gap-4 flex justify-between items-start">
-                <aside className="h-[calc(100vh-2rem)] w-[25vw] rounded flex flex-col gap-6 p-4 justify-start bg-[rgba(4,25,29,.5)] border-2 border-yellow">
+                <aside className="h-[calc(100vh-2rem)] w-[25vw] overflow-y-scroll rounded flex flex-col gap-6 p-4 justify-start bg-[rgba(4,25,29,.5)] border-2 border-yellow">
                     <Link to="/">
                         <img className="w-2/3 mx-auto" src="/logo-light.png" alt="" />
                     </Link>
@@ -40,7 +40,7 @@ const Profile = () => {
                     <PrimaryButton link="/blog" extraCls="w-full" text="blog" />
                 </aside>
 
-                <div className="w-[75vw] bg-[rgba(4,25,29,.5)] border-2 rounded border-yellow h-[calc(100vh-2rem)]">
+                <div className="w-[75vw] bg-[rgba(4,25,29,.5)] border-2 rounded border-yellow overflow-y-scroll h-[calc(100vh-2rem)]">
                     <Outlet />
                 </div>
             </div>
