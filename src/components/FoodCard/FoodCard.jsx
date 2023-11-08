@@ -12,9 +12,15 @@ const FoodCard = ({ id, image, category, name, shortDescription, price, quantity
                     {category}
                 </span>
 
-                <span className="absolute rounded-[3px] w-fit font-extrabold uppercase text-xs tracking-[2px] bottom-6 right-6 bg-yellow px-3 pt-1 pb-px">
-                    {quantity ? `${quantity} in stock` : "out of stock"}
-                </span>
+                {quantity > 0 ? (
+                    ""
+                ) : (
+                    <span
+                        className={`absolute rounded-[3px] w-fit font-extrabold uppercase text-xs tracking-[2px] bottom-6 right-6 bg-red-500 px-3 pt-1 pb-px`}
+                    >
+                        Out of stock
+                    </span>
+                )}
             </div>
 
             <div className="p-7 flex flex-col gap-3">

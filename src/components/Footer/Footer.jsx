@@ -4,8 +4,8 @@ import NavLinks from "../NavLinks/NavLinks";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 import useAxios from "../../hooks/useAxios/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { Spinner } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const Footer = () => {
     const axios = useAxios();
@@ -80,9 +80,9 @@ const Footer = () => {
                 <div className="flex flex-col gap-6">
                     <h3 className="font-title text-3xl">Featured foods</h3>
                     {isLoading ? (
-                        <Spinner color="amber" className="h-16 w-16" />
+                        <LoadingSpinner/>
                     ) : isError ? (
-                        <p>Something went wrong.{error}</p>
+                        <p>something went wrong.{error.message}</p>
                     ) : (
                         <div className="flex justify-between items-center">
                             {foods?.slice(0, 3).map((food) => (

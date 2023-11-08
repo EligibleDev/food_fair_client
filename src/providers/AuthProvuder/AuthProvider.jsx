@@ -16,7 +16,7 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const googleLogin = () => {
         return signInWithPopup(auth, googleProvider);
@@ -35,9 +35,7 @@ const AuthProvider = ({ children }) => {
             displayName: name,
             photoURL: photo,
         })
-            .then(() => {
-                // Profile updated!
-            })
+            .then(() => {})
             .catch((error) => {
                 console.error(error);
             });

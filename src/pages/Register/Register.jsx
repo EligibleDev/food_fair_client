@@ -6,6 +6,8 @@ import useAuth from "../../hooks/useAuth/useAuth";
 import toast from "react-hot-toast";
 import useUtils from "../../hooks/useUtils/useUtils";
 import useAxios from "../../hooks/useAxios/useAxios";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 
 const Register = () => {
     const location = useLocation();
@@ -14,8 +16,26 @@ const Register = () => {
     const { serverURL } = useUtils();
     const axios = useAxios();
 
+
+    const { mutate } = useMutation({
+        mutationKey: ["user"],
+        mutationFn: (user) => {
+            console.log(user)
+            return axios.post("/users", user);
+        },
+        onSuccess: () => {
+            console.log("Account created successfully");
+        },
+        onError: (error) => {
+            toast.error(error.message);
+            console.error(error);
+        },
+    });
+
     const handleRegister = async (event) => {
         event.preventDefault();
+
+        const toastId = toast.loading("Creating user...");
 
         const name = event.target.name.value;
         const email = event.target.email.value;
@@ -32,17 +52,13 @@ const Register = () => {
 
         console.log(serverURL);
 
-        const toastId = toast.loading("Creating user...");
-
         try {
-            const user = await createUser(email, password);
-            const data = await axios.post("/users", user.user);
-            console.log(data);
-            console.log(user.user);
-
+            const data = await createUser(email, password);
+            console.log(data?.user);
             updateUser(name, photo);
-            toast.success("Account created successfully", { id: toastId });
 
+            mutate(data?.user);
+            toast.success("Registration Successful", { id: toastId });
             navigate(location?.state ? location.state : "/");
         } catch (error) {
             console.error(error);

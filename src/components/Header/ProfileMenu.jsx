@@ -11,16 +11,19 @@ import {
 } from "@material-tailwind/react";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const ProfileMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
     const { user, logout } = useAuth();
 
     const profileMenuItems = [
         {
-            label: user?.displayName,
+            label: "Profile",
             icon: AiOutlineUser,
             do: () => {
+                navigate("/profile/");
                 setIsMenuOpen(false);
             },
         },

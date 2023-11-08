@@ -2,8 +2,8 @@ import useAxios from "../../../../hooks/useAxios/useAxios";
 import ShortTitle from "../../../../components/ShortTitle/ShortTitle";
 import PrimaryButton from "../../../../components/PrimaryButton/PrimaryButton";
 import { useQuery } from "@tanstack/react-query";
-import { Spinner } from "@material-tailwind/react";
 import PropTypes from "prop-types";
+import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 
 const TopFoods = () => {
     const axios = useAxios();
@@ -50,9 +50,8 @@ const TopFoods = () => {
             <h1 className="text-5xl font-title pb-10">Top selling foods</h1>
 
             {isLoading ? (
-                <Spinner color="amber" className="h-16 w-16" />
-            ) : isError ? (
-                <p>Something went wrong.{error}</p>
+<LoadingSpinner/>            ) : isError ? (
+                <p>something went wrong.{error.message}</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16">
                     {foods?.data?.map((food) => (

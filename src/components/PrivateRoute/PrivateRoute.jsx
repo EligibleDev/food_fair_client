@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { Spinner } from "@material-tailwind/react";
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth/useAuth";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const PrivateRoute = ({ children }) => {
     const location = useLocation();
@@ -11,13 +11,11 @@ const PrivateRoute = ({ children }) => {
     if (loading) {
         return (
             <div className="h-screen flex justify-center items-center">
-                <Spinner color="amber" className="h-16 w-16 " />
+                <LoadingSpinner />{" "}
             </div>
         );
-    }
-
-    if (!user?.email) {
-        return <Navigate state={location.pathname} to="/login-register/login" />;
+    } else if (!user?.email) {
+        return <Navigate state={location.pathname} to="/login" />;
     }
 
     return children;
