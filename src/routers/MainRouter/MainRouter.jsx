@@ -29,15 +29,15 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: "/food/:id",
-                element: (
-                    <PrivateRoute>
-                        <FoodDetails />
-                    </PrivateRoute>
-                ),
+                element: <FoodDetails />,
             },
             {
                 path: "/purchase_food/:id",
-                element: <PurchaseFood />,
+                element: (
+                    <PrivateRoute>
+                        <PurchaseFood />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/blog",
@@ -89,10 +89,10 @@ const MainRouter = createBrowserRouter([
                 path: "/profile/update_food/:id",
                 element: <UpdateFood />,
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/api/v1/food/${params?.id}`),
-                //😥😣😣😓😓
-                //I am extremity sorry vaiya/ apu onek bar erorr khauar poreu jokhon previous value gula input e set
-                //korte parsilam na tokhon ager assignment e evabe koresi tai oita moto kore kore dilam.
+                    // fetch(`http://localhost:5000/api/v1/food/${params?.id}`),
+                    fetch(
+                        `https://assignment-11-server-ten-lyart.vercel.app/api/v1/api/v1/food/${params?.id}`
+                    ),
             },
         ],
     },

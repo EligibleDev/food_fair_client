@@ -28,7 +28,7 @@ const Foods = () => {
     });
 
     const next = () => {
-        if (page === 5) return;
+        if (page === totalPages) return;
         setPage(page + 1);
     };
 
@@ -49,11 +49,11 @@ const Foods = () => {
         isError,
         error,
     } = useQuery({
-        queryKey: ["food"],
+        queryKey: ["food", country, category,page],
         queryFn: getFoods,
     });
 
-    console.log(foods)
+    console.log(foods);
 
     const totalPages = Math.ceil(foods?.data?.total / limit);
 
@@ -123,35 +123,28 @@ const Foods = () => {
                     {isLoading ? (
                         <LoadingSpinner />
                     ) : isError ? (
-                        <p>something went wrong.{error.message}</p>
-                    ) : foods?.data?.foods?.length ? (
+                        <p>something went wrong: {error.message}</p>
+                    ) : Array.isArray(foods?.data?.foods) &&
+                      foods?.data?.foods.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16">
-                            {Array.isArray(foods?.data?.foods) ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-16">
-                                    {foods?.data?.foods
-                                        .filter((food) =>
-                                            food?.foodName
-                                                .toLowerCase()
-                                                .includes(searchValue.toLowerCase())
-                                        )
-                                        .map((food) => (
-                                            <FoodCard
-                                                key={food?._id}
-                                                id={food?._id}
-                                                image={food?.image}
-                                                category={food?.foodCategory}
-                                                name={food?.foodName}
-                                                shortDescription={food?.shortDescription}
-                                                price={food?.price}
-                                                quantity={food?.quantity}
-                                            />
-                                        ))}
-                                </div>
-                            ) : (
-                                <h3 className="text-3xl font-title">
-                                    No data found on this filter, Try something else
-                                </h3>
-                            )}
+                            {foods?.data?.foods
+                                .filter((food) =>
+                                    food?.foodName
+                                        .toLowerCase()
+                                        .includes(searchValue.toLowerCase())
+                                )
+                                .map((food) => (
+                                    <FoodCard
+                                        key={food?._id}
+                                        id={food?._id}
+                                        image={food?.image}
+                                        category={food?.foodCategory}
+                                        name={food?.foodName}
+                                        shortDescription={food?.shortDescription}
+                                        price={food?.price}
+                                        quantity={food?.quantity}
+                                    />
+                                ))}
                         </div>
                     ) : (
                         <h3 className="text-3xl font-title">
@@ -191,7 +184,7 @@ const Foods = () => {
                         className="flex items-center gap-2 rounded-full text-green"
                         color="amber"
                         onClick={next}
-                        disabled={page === 5}
+                        disabled={page === totalPages}
                     >
                         Next
                         <FaArrowRight strokeWidth={2} className="h-4 w-4" />

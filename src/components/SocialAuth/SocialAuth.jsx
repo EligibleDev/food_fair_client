@@ -21,7 +21,7 @@ const SocialAuth = () => {
                     });
                     if (response.data?.success) {
                         toast.success("Google Login Successful");
-                        navigate("/");
+                        navigate(location?.state ? location.state : "/");
                     } else {
                         logout();
                         const logoutResponse = await axios.post("/auth/logout");

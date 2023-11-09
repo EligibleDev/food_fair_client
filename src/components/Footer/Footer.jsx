@@ -9,22 +9,22 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const Footer = () => {
     const axios = useAxios();
-    const [foods, setFoods] = useState([]);
+    const [footerFoods, setFooterFoods] = useState([]);
 
-    const getFoods = async () => {
+    const getFooterFoods = async () => {
         return await axios.get("/mostSoldFoods");
     };
 
     const {
-        data: loadedFoods,
+        data: loadedFooterFoods,
         isLoading,
         isError,
         error,
-    } = useQuery({ queryKey: ["food"], queryFn: getFoods });
+    } = useQuery({ queryKey: ["food"], queryFn: getFooterFoods });
 
     useEffect(() => {
-        setFoods(loadedFoods?.data);
-    }, [loadedFoods]);
+        setFooterFoods(loadedFooterFoods?.data);
+    }, [loadedFooterFoods]);
 
     return (
         <footer className="max-w-screen-xl mx-auto px-8 xl:px-0">
@@ -78,14 +78,14 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-6">
-                    <h3 className="font-title text-3xl">Featured foods</h3>
+                    <h3 className="font-title text-3xl">Featured Foods</h3>
                     {isLoading ? (
                         <LoadingSpinner/>
                     ) : isError ? (
                         <p>something went wrong.{error.message}</p>
                     ) : (
                         <div className="flex justify-between items-center">
-                            {foods?.slice(0, 3).map((food) => (
+                            {footerFoods?.slice(0, 3).map((food) => (
                                 <Link key={food?._id} to={`/food/${food?._id}`}>
                                     <img
                                         className="w-24 sm:w-40 lg:w-24 h-24 object-cover rounded "
@@ -97,7 +97,7 @@ const Footer = () => {
                         </div>
                     )}
 
-                    <Link to="/foods" className="text-yellow">
+                    <Link to="/footerFoods" className="text-yellow">
                         See All Foods
                     </Link>
                 </div>

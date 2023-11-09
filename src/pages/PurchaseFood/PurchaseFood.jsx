@@ -105,6 +105,10 @@ const PurchaseFood = () => {
                                     This product is currently out of stock
                                 </p>
                             ) : foodDetails?.data?.authorInfo?.email === user?.email ? (
+                                <p className="text-2xl font-title text-red-500">
+                                    You cant buy your own product
+                                </p>
+                            ) : (
                                 <>
                                     <p className="text-2xl font-title">
                                         <b>{foodDetails?.data?.quantity}</b> in stock
@@ -147,10 +151,6 @@ const PurchaseFood = () => {
                                         />
                                     </form>
                                 </>
-                            ) : (
-                                <p className="text-2xl font-title text-red-500">
-                                    You cant buy your own product
-                                </p>
                             )}
                         </div>
                     </div>
