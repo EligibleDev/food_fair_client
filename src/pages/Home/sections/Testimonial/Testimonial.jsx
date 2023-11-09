@@ -35,7 +35,7 @@ const Testimonial = () => {
             title: "Unforgettable Dining Experience",
             content:
                 "I recently had the pleasure of dining at this restaurant, and it was an unforgettable experience. The food was mouthwatering, and the ambiance was perfect for a romantic evening. I'll cherish the memories of this dinner forever.",
-            author: "EpicureanAdventurer",
+            author: "Epicurean",
             date: "06.25.21",
             image: "/fake-profile.jpg",
         },
@@ -67,7 +67,7 @@ const Testimonial = () => {
             title: "Culinary Perfection",
             content:
                 "If you're looking for culinary perfection, this restaurant is the place to be. The food is simply outstanding, and the entire dining experience is a true delight. Highly recommended!",
-            author: "GourmandGlobeTrotter",
+            author: "GourmandGlobe",
             date: "10.05.21",
             image: "/fake-profile.jpg",
         },
@@ -75,7 +75,7 @@ const Testimonial = () => {
             title: "A Food Lover's Paradise",
             content:
                 "This restaurant is a food lover's paradise. The dishes are a masterpiece of flavors, and the atmosphere is cozy and inviting. I had an amazing time, and I can't wait to return for more culinary adventures.",
-            author: "CuisineExplorer",
+            author: "Explorer",
             date: "11.15.21",
             image: "/fake-profile.jpg",
         },
@@ -116,7 +116,7 @@ const Testimonial = () => {
             >
                 {testimonials.map((item) => (
                     <SwiperSlide key={item?.author}>
-                        <div className="flex flex-col gap-4 bg-[#f3f2f0] border-yellow justify-center items-start p-7 border-4">
+                        <div className="flex h-[380px] flex-col gap-4 bg-[#f3f2f0] border-yellow justify-center items-start p-7 border-4">
                             <h3 className="font-title text-3xl">{item?.title}</h3>
                             <p>{item?.content}</p>
                             <div className="w-full border-bottom border-b-[3px] border-dotted border-b-[#6254549c]"></div>
