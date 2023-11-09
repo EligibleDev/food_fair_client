@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCountries } from "use-react-countries";
 import useAxios from "../../hooks/useAxios/useAxios";
 import useAuth from "../../hooks/useAuth/useAuth";
@@ -41,7 +41,7 @@ const AddFood = () => {
         };
 
         mutate(newFood);
-
+        event.target.reset();
         console.log(newFood);
     };
 
@@ -95,7 +95,7 @@ const AddFood = () => {
                     <div className="flex gap-3">
                         <select
                             onChange={(e) => setCategory(e.target.value)}
-                            className="bg-black h-full w-full rounded-[7px] border border-yellow bg-transparent px-3 py-[11.5px] text-sm font-normal outline outline-0 transition-all focus:border-2 focus:outline-0 bg-black"
+                            className="h-full w-full rounded-[7px] border border-yellow bg-transparent px-3 py-[11.5px] text-sm font-normal outline outline-0 transition-all focus:border-2 focus:outline-0 bg-black"
                         >
                             <option className="bg-black text-white" value={""}>
                                 Select category
